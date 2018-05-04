@@ -1,4 +1,4 @@
-package clases;
+package lab.pkg2_sarahcastelar;
 
 
 public class Alumno {
@@ -17,14 +17,11 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(String NoCuenta) {
-        this.NoCuenta = NoCuenta;
+    public Alumno(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Alumno(String user, String password) {
-        this.user = user;
-        this.password = password; //al atributo le asigno el parametro. 
-    }
+    
     
     public Alumno(String nombre, String NoCuenta, String fechaNacimiento, String edad, String ciudad, String nacionalidad, String ID, String user, String password) {
         this.nombre = nombre;

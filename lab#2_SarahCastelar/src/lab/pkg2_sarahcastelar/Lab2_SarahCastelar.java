@@ -1,6 +1,5 @@
 package lab.pkg2_sarahcastelar;
 
-import clases.Alumno;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -12,6 +11,8 @@ Scanner entrada = new Scanner (System.in);
        //nota, examen, 
        ArrayList preguntas = new ArrayList();
        ArrayList respuestas = new ArrayList();
+       ArrayList revision = new ArrayList();
+       String respuestas2 = "";
        int option = -1;
        ArrayList lista = new ArrayList();
        ArrayList examen = new ArrayList();
@@ -60,18 +61,13 @@ Scanner entrada = new Scanner (System.in);
                
                if (option2 == 2) { //REVISAR EXAMENES
                    //sout que examen desea ingresar
-                   String salida = "";
+                   String salida = "Opciones disponibles: \n";
+                   
                    for (Object t : examen) {
                            salida += t + "\n";
                    }
                    String CodigoExamen =JOptionPane.showInputDialog("Ingrese Codigo de examen que desea revisar:\n "+salida);
-                   //e.Examen(CodigoExamen,preguntas,respuestas);
-                   //JOptionPane.showMessageDialog(null, Examen());
-                   //System.out.println(Examen(CodigoExamen));
-                   //if (Examen(CodigoExamen)  == CodigoExamen)) {//si es el mismo codigo
-                       //sout las preguntas y respuestas
-                       //sout el toString de la clase examen
-                  // }
+                   //hasta aqui lleguee
                }
            }//fin de administracion
            
@@ -95,30 +91,62 @@ Scanner entrada = new Scanner (System.in);
            }//fin de crear cuenta alumno
            
            if (option == 3) {
+             
              String NoCuenta =JOptionPane.showInputDialog("Ingrese numero de cuenta: ");
              String user =JOptionPane.showInputDialog("Ingrese Username: ");  
              String password =JOptionPane.showInputDialog("Ingrese contrasena: ");
-             //comparar nocuenta con todos los de la lista del alumno
-               System.out.println(lista);
+             
                if (lista.contains(NoCuenta)) {
+                   System.out.println("hoa");
                    int pos = lista.indexOf(NoCuenta);
                    if (lista.get(pos+1).equals(user) && lista.get(pos+2).equals(password)){
-                       //que se vean los datos del estudiante que entro a su account.
-                       //la pos de alumnos y lista es la misma. siempre.
-                       int posModificar = Integer.parseInt(JOptionPane.showInputDialog(null, alumnos.get(pos)
-                       + "Ingrese la posicion que quiera modificar \n "
-                       + "si no desea modificar algo, ingrese -1."));//FUNCIONA MEJOR
-                       if (posModificar == 0) {
-                           //((Rectangulo) lista.get(pos)).setLargo(l);
-                           a.setNombre(JOptionPane.showInputDialog("Ingrese texto nuevo:"));
+                       System.out.println("holaa");
+                       int option3 = -1;
+                       while (option3 != 5){
+                            option3 = Integer.parseInt(
+                                   JOptionPane.showInputDialog(""
+                                           + "1. Visualizar datos \n"
+                                           + "2. Modificar datos \n"
+                                           + "3. Ver Notas \n"
+                                           + "4. Realizar examenes \n"
+                                           + "5. salir")
+                           );
+                            
+                            if (option3 == 1) {
+                               JOptionPane.showInputDialog(null, alumnos.get(pos));
+                           }
+                            
+                            if (option3 == 2){
+                                int posModificar = Integer.parseInt(JOptionPane.showInputDialog(null, alumnos.get(pos)
+                                       + "Ingrese la posicion que quiera modificar \n "
+                                       + "si no desea modificar algo, ingrese -1."));//FUNCIONA MEJOR
+                                 if (posModificar == 0) {
+                                   //((Rectangulo) lista.get(pos)).setLargo(l);
+                                   String text = JOptionPane.showInputDialog("Ingrese texto nuevo:");
+                                   a.setNombre(text);
+                                   posModificar = Integer.parseInt(JOptionPane.showInputDialog(null, alumnos.get(pos)
+                                           + "Ingrese la posicion que quiera modificar \n "
+                                           + "si no desea modificar algo, ingrese -1."));
+                               }
+                           }
+                            
+                       if (option3 == 4) {
+                           String NoExamen =JOptionPane.showInputDialog("Codigo del examen que va realizar: ");
+                           int pos2 = examen.indexOf(NoExamen);
+                           System.out.println(lista.get(pos));
+                           for (int i = 0; i < preguntas.size() ; i++) {
+                               respuestas2 += JOptionPane.showInputDialog(preguntas.get(i)) + ",";
+                           }
+                           String nombre = JOptionPane.showInputDialog("Ingrese nombre: ");
+                           a.setNombre(nombre);
                        }
-                   }else{
+                       }
+                   
+                       
+                   }else {
                        JOptionPane.showMessageDialog(null, "Ingreso invalido, intentelo de nuevo.");
                    }
                }
-               
-             
-             
            }
        }
     }
